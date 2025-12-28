@@ -100,14 +100,14 @@ def trade_live(
         exit_filters
     ])
 
-    tickers_pass_1 = tickers.copy()
     tickers_pass_2 = tickers.copy()
 
     while True:
 
-        for ticker in [t for t in tickers if t in tickers_pass_2]:
-            tickers_pass_1 = []
-            tickers_pass_2 = []
+        tickers_to_loop = [t for t in tickers if t in tickers_pass_2]
+        tickers_pass_2 = []
+
+        for ticker in tickers_to_loop:
 
             fig, axs = plt.subplots(4, max_n_filters, figsize=(6*max_n_filters, 10))
             fig.suptitle(f"Investigating signals for {ticker}")
@@ -117,7 +117,6 @@ def trade_live(
             results = [f(info, axs[0, a], **kwargs) for a, f in enumerate(info_based_filters)]
 
             if all(results):
-                tickers_pass_1.append(ticker)
 
                 df_direction = load_ohlcv(ticker, kwargs.get('direction_interval'), "2 days ago UTC")
                 results = [f(df_direction, axs[1, a], **kwargs) for a, f in enumerate(return_based_direction_filters)]
