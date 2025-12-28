@@ -2,7 +2,7 @@ initial_filter_timeframe: "1d"
 signal_filter_timeframe: "30m"
 execution_filter_timeframe: "5m"
 
-min_return: 0
+min_return: -5
 min_volume: 10000000
 
 breakout_bars: 144
