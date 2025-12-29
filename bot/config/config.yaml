@@ -5,7 +5,8 @@ execution_filter_timeframe: "5m"
 min_return: -5
 min_volume: 10000000
 
-breakout_bars: 144
+breakout_bars: 14
+breakout_n_atr: 0.5
 volume_ma_bars: 144
 atr_compression_rank_bars: 144
 atr_compression_cutoff: 0.333
