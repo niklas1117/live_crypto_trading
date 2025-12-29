@@ -24,9 +24,11 @@ def trend_regression_entry(df, ax, **kwargs):
         ax.set_ylabel("Price")
         ax.legend()
 
-    logger.info(f"Trend regression entry t-value: {t:.3f}")
+    result = t > 1.96
 
-    return t > 1.96
+    logger.info(f"{'✅' if result else '❌'} - Price trend beta(t): {t:.3f}")
+
+    return result
 
 
 def volume_trend_regression_entry(df, ax, **kwargs):
@@ -50,9 +52,11 @@ def volume_trend_regression_entry(df, ax, **kwargs):
         ax.set_ylabel("Volume")
         ax.legend()
 
-    logger.info(f"Volume trend regression entry t-value: {t:.3f}")
+    result = t > 1.96
 
-    return t > 1.96
+    logger.info(f"{'✅' if result else '❌'} - Volume trend beta(t): {t:.3f}")
+
+    return result
 
 
 def volume_breakout(df, ax, **kwargs):
@@ -74,10 +78,12 @@ def volume_breakout(df, ax, **kwargs):
         ax.set_xlabel("Time")
         ax.set_ylabel("Volume")
         ax.legend()
+    
+    result = (volume.iloc[-1] > volume_ma.iloc[-1]) & (volume.iloc[-1] >= volume.quantile(0.975))
 
-    logger.info(f"Volume breakout - Current: {volume.iloc[-1]:.0f}, MA: {volume_ma.iloc[-1]:.0f}, 97.5%: {volume.quantile(0.975):.0f}")
+    logger.info(f"{'✅' if result else '❌'} - Volume breakout - {((volume.iloc[-1] / volume.quantile(0.975)) - 1):.2f}")
 
-    return (volume.iloc[-1] > volume_ma.iloc[-1]) & (volume.iloc[-1] >= volume.quantile(0.975))
+    return result
 
 
 def breakout(df, ax, **kwargs):
@@ -108,9 +114,11 @@ def breakout(df, ax, **kwargs):
         ax.set_ylabel("Price")
         ax.legend()
     
-    logger.info(f"Breakout - ATRs away from high: {((df['Close'] - cum_high.shift(1)) / atr).iloc[-1]:.2f}")
+    result = signal.iloc[-1]
 
-    return signal.iloc[-1]
+    logger.info(f"{'✅' if result else '❌'} - Breakout - {((df['Close'] - cum_high.shift(1)) / atr).iloc[-1]:.2f} ATRs")
+
+    return result
 
 def recent_atr_compression(df, ax, **kwargs):
 
@@ -132,6 +140,8 @@ def recent_atr_compression(df, ax, **kwargs):
         ax.set_ylim(0, 1)
         ax.legend()
 
-    logger.info(f"Recent ATR compression - Current ATR rank: {atr_compression.iloc[-1]:.3f}")
+    result = atr_compression.iloc[-1] < atr_compression_cutoff
 
-    return atr_compression.iloc[-1] < atr_compression_cutoff
+    logger.info(f"{'✅' if result else '❌'} - ATR rank: {atr_compression.iloc[-1]:.3f}")
+
+    return result
