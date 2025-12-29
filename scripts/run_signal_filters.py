@@ -17,5 +17,5 @@ run_live_signal_filters(
     info_based_filters=[return_filter, volume_filter],
     return_based_direction_filters=[breakout, volume_breakout, recent_atr_compression],
     schedule_minutes=[0, 30],
-    rerun_once_first=True # run once and then schedule
+    rerun_once_first=False # run once and then schedule
 )

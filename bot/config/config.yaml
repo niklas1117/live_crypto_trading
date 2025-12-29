@@ -13,5 +13,5 @@ atr_compression_cutoff: 0.333
 donchian_entry_bars: 12
 
 atr_bars: 30
-max_leverage: 0.9
+max_leverage: 0.3
 min_loss_atr: 3

@@ -1,4 +1,5 @@
 import math
+import sys
 import time
 from decimal import Decimal
 
@@ -13,7 +14,9 @@ from bot.config.utils import read_tickers, write_tickers, read_config
 from bot.data import (check_order_status, client, get_position,
                       get_ticker_info, get_usdt_balance, load_ohlcv)
 
-logger.add("bot/trade_live.log", rotation="10 MB")
+logger.remove()
+logger.add("bot/trade_live.log", rotation="10 MB", format="{time:HH:mm:ss} | {level} | {message}")
+logger.add(sys.stderr, format="{time:HH:mm:ss} | {level} | {message}")
 
 def evaluate_signal_filters_once(
     tickers, 
@@ -155,6 +158,7 @@ def evaluate_entry_filters_and_execute_one_trade(
                 potential_profit = (price * quantity_close) - total_outlay
 
                 cummaxs.append(cummmax), trailing_losses.append(trailing_loss), prices.append(price), potential_profits.append(potential_profit)
+                logger.info(f"Current price: {price}, Trailing loss: {trailing_loss}, Potential profit: {potential_profit}")
 
                 if price < trailing_loss:
                     logger.info("Trailing loss hit, selling.")
