@@ -113,70 +113,80 @@ def evaluate_entry_filters_and_execute_one_trade(
             logger.info("✅")
             logger.info(f"{ticker} - executing trade")
 
-            last_atr = ta.ATR(df_entry['High'], df_entry['Low'], df_entry['Close'], timeperiod=kwargs.get('atr_bars')).iloc[-1]
-            cash = get_usdt_balance()
-            quantity = cash / price
-            quantity = math.floor(quantity * kwargs.get('max_leverage'))
-            if quantity == 0:
-                print(f"Insufficient funds to buy {ticker}")
-                continue
-            order = client.create_margin_order(
+            try: 
+
+                last_atr = ta.ATR(df_entry['High'], df_entry['Low'], df_entry['Close'], timeperiod=kwargs.get('atr_bars')).iloc[-1]
+                cash = get_usdt_balance()
+                quantity = cash / price
+                quantity = math.floor(quantity * kwargs.get('max_leverage'))
+                if quantity == 0:
+                    print(f"Insufficient funds to buy {ticker}")
+                    continue
+                order = client.create_margin_order(
+                        symbol=ticker,
+                        side=SIDE_BUY,
+                        type=ORDER_TYPE_MARKET,
+                        quantity=quantity,
+                    )
+                order_id = order['orderId']
+                info = client.get_symbol_info(ticker)
+                buy_price = float(client.get_margin_trades(symbol=ticker, orderId=order_id)[0]['price'])
+                total_outlay = quantity * buy_price
+                while check_order_status(ticker, order_id) != 'FILLED': time.sleep(1)
+                time.sleep(1)
+
+                logger.info(f'bought {quantity} of {ticker} at {buy_price} for {total_outlay}')
+                quantity_close = get_position(ticker.split('USDT')[0])
+                step = Decimal(info['filters'][1]['stepSize'])
+                qty_dec = Decimal(str(quantity_close))
+                quantity_close = float((qty_dec // step) * step)
+
+                logger.info(f"To close we need to sell {quantity_close}.")
+
+                cummmax = buy_price
+                last_price = buy_price
+                price_stable_days = 0
+
+                cummaxs = []
+                trailing_losses = []
+                prices = []
+                potential_profits = []
+
+                while True:
+                    try: 
+                        price = float(client.get_symbol_ticker(symbol=ticker)['price'])
+
+                        cummmax = max(cummmax, price)
+                        trailing_loss = cummmax - (last_atr * kwargs.get('min_loss_atr'))
+                        potential_profit = (price * quantity_close) - total_outlay
+
+                        cummaxs.append(cummmax), trailing_losses.append(trailing_loss), prices.append(price), potential_profits.append(potential_profit)
+                        logger.info(f"Current price: {price}, Trailing loss: {trailing_loss}, Potential profit: {potential_profit}")
+
+                        if price < trailing_loss:
+                            logger.info("Trailing loss hit, selling.")
+                            break
+
+                        if price_stable_days > 10 and potential_profit > 0:
+                            logger.info(f"Price has been stable, potential profit reached: {potential_profit}")
+                            break
+
+                        price_stable_days += 1 if price == last_price else 0
+                        last_price = price
+
+                    except Exception as e:
+                        logger.error(f"Error during monitoring price for {ticker}: {e}, closing position.")
+                        break
+
+                order = client.create_margin_order(
                     symbol=ticker,
-                    side=SIDE_BUY,
+                    side=SIDE_SELL,
                     type=ORDER_TYPE_MARKET,
-                    quantity=quantity,
+                    quantity=quantity_close,
                 )
-            order_id = order['orderId']
-            info = client.get_symbol_info(ticker)
-            buy_price = float(client.get_margin_trades(symbol=ticker, orderId=order_id)[0]['price'])
-            total_outlay = quantity * buy_price
-            while check_order_status(ticker, order_id) != 'FILLED': time.sleep(1)
-            time.sleep(1)
-
-            logger.info(f'bought {quantity} of {ticker} at {buy_price} for {total_outlay}')
-            quantity_close = get_position(ticker.split('USDT')[0])
-            step = Decimal(info['filters'][1]['stepSize'])
-            qty_dec = Decimal(str(quantity_close))
-            quantity_close = float((qty_dec // step) * step)
-
-            logger.info(f"To close we need to sell {quantity_close}.")
-
-            cummmax = buy_price
-            last_price = buy_price
-            price_stable_days = 0
-
-            cummaxs = []
-            trailing_losses = []
-            prices = []
-            potential_profits = []
-
-            while True:
-                price = float(client.get_symbol_ticker(symbol=ticker)['price'])
-
-                cummmax = max(cummmax, price)
-                trailing_loss = cummmax - (last_atr * kwargs.get('min_loss_atr'))
-                potential_profit = (price * quantity_close) - total_outlay
-
-                cummaxs.append(cummmax), trailing_losses.append(trailing_loss), prices.append(price), potential_profits.append(potential_profit)
-                logger.info(f"Current price: {price}, Trailing loss: {trailing_loss}, Potential profit: {potential_profit}")
-
-                if price < trailing_loss:
-                    logger.info("Trailing loss hit, selling.")
-                    break
-
-                if price_stable_days > 10 and potential_profit > 0:
-                    logger.info(f"Price has been stable, potential profit reached: {potential_profit}")
-                    break
-
-                price_stable_days += 1 if price == last_price else 0
-                last_price = price
-
-            order = client.create_margin_order(
-                symbol=ticker,
-                side=SIDE_SELL,
-                type=ORDER_TYPE_MARKET,
-                quantity=quantity_close,
-            )
+                
+            except Exception as e:
+                logger.error(f"Error executing trade for {ticker}: {e}, skipping.")
             return 
         else: 
             logger.info("❌")
