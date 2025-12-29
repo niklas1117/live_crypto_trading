@@ -31,7 +31,9 @@ def evaluate_signal_filters_once(
 
         # Initial Filters
 
-        logger.info(f"{ticker} - initial filters")
+        logger.info(f"Evaluating signal filters for {ticker}")
+
+        logger.info("initial filters")
 
         initial_filter_timeframe = kwargs.get('initial_filter_timeframe')
         info = get_ticker_info(ticker, initial_filter_timeframe)
@@ -40,7 +42,7 @@ def evaluate_signal_filters_once(
         if all(results):
 
             logger.info("✅")
-            logger.info(f"{ticker} - signal filters")
+            logger.info("signal filters")
 
             # Signal Filters
 
@@ -99,7 +101,9 @@ def evaluate_entry_filters_and_execute_one_trade(
 
     for ticker in tickers:
 
-        logger.info(f"{ticker} - entry filters")
+        logger.info(f"Evaluating execution for {ticker}")
+
+        logger.info(f"entry filters")
 
         price = float(client.get_symbol_ticker(symbol=ticker)['price'])
         df_entry = load_ohlcv(ticker, kwargs.get('execution_filter_timeframe'), "2 hours ago UTC")
@@ -108,7 +112,7 @@ def evaluate_entry_filters_and_execute_one_trade(
         if all(results):
 
             logger.info("✅")
-            logger.info(f"{ticker} - executing trade")
+            logger.info(f"executing trade")
 
             try: 
 
