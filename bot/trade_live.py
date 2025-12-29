@@ -37,8 +37,6 @@ def evaluate_signal_filters_once(
         info = get_ticker_info(ticker, initial_filter_timeframe)
         results = [f(info, None, **kwargs) for a, f in enumerate(info_based_filters)]
 
-        logger.info(", ".join(["✅" if r else "❌" for r in results]))
-
         if all(results):
 
             logger.info("✅")
@@ -48,7 +46,6 @@ def evaluate_signal_filters_once(
 
             df_direction = load_ohlcv(ticker, kwargs.get('signal_filter_timeframe'), "5 days ago UTC")
             results = [f(df_direction, None, **kwargs) for a, f in enumerate(return_based_direction_filters)]
-            logger.info(", ".join(["✅" if r else "❌" for r in results]))
 
             if all(results):
                 logger.info("✅")
@@ -184,7 +181,7 @@ def evaluate_entry_filters_and_execute_one_trade(
                     type=ORDER_TYPE_MARKET,
                     quantity=quantity_close,
                 )
-                
+
             except Exception as e:
                 logger.error(f"Error executing trade for {ticker}: {e}, skipping.")
             return 

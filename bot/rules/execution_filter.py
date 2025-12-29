@@ -1,5 +1,6 @@
 import pandas as pd
 import talib as ta
+from loguru import logger
 
 
 def distance_to_mean_filter(df, price, ax, **kwargs):
@@ -24,7 +25,11 @@ def distance_to_mean_filter(df, price, ax, **kwargs):
         ax.set_xlabel("Distance")
         ax.set_ylabel("Time")
 
-    return (price - mean_last) < (entry_atr * atr_last)
+    result = (price - mean_last) < (entry_atr * atr_last)
+
+    logger.info(f"{'✅' if result else '❌'} - Distance to mean: {(price - mean_last) / (entry_atr * atr_last):.2f}")
+
+    return result
 
 
 def volume_reduction_pullback_filter(df, price, ax, **kwargs):
@@ -48,8 +53,12 @@ def volume_reduction_pullback_filter(df, price, ax, **kwargs):
         ax.set_title(f"Volume reduction pullback filter")
         ax.set_xlabel("Volume")
         ax.set_ylabel("Time")
+    
+    result = volume_last < (mean_volume_last * relative_volume_reduction_filter)
 
-    return volume_last < (mean_volume_last * relative_volume_reduction_filter)
+    logger.info(f"{'✅' if result else '❌'} - Volume reduction: {(volume_last / (mean_volume_last * relative_volume_reduction_filter)):.2f}")
+
+    return result
 
 
 def upper_donchian_breach(df, price, ax, **kwargs):
@@ -66,4 +75,8 @@ def upper_donchian_breach(df, price, ax, **kwargs):
         ax.set_ylabel("Price")
         ax.legend()
 
-    return (df['Close'] > donchian_channel).iloc[-1]
+    result = (df['Close'] > donchian_channel).iloc[-1]
+
+    logger.info(f"{'✅' if result else '❌'} - Donchian Breakout: {(price / donchian_channel.iloc[-1]):.2f}")
+
+    return result

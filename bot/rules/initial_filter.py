@@ -1,5 +1,6 @@
 # info based filters
 import pandas as pd
+from loguru import logger
 
 
 def return_filter(info, ax, **kwargs):
@@ -19,7 +20,11 @@ def return_filter(info, ax, **kwargs):
         ax.set_xlabel("Return")
         ax.set_ylabel("Time")
 
-    return ret > min_return
+    result = ret > min_return
+
+    logger.info(f"{'✅' if result else '❌'} - Return: {ret:.2f}%")
+
+    return result
 
 
 def volume_filter(info, ax, **kwargs):
@@ -39,4 +44,8 @@ def volume_filter(info, ax, **kwargs):
         ax.set_xlabel("Volume")
         ax.set_ylabel("Time")
 
-    return vol > min_volume
+    result = vol > min_volume
+
+    logger.info(f"{'✅' if result else '❌'} - Volume: {vol/1_000_000:.2f}M")
+
+    return result
