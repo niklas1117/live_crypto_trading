@@ -75,7 +75,7 @@ def volume_breakout(df, ax, **kwargs):
         ax.set_ylabel("Volume")
         ax.legend()
 
-    logger.info(f"Volume breakout - Current: {volume.iloc[-1]}, MA: {volume_ma.iloc[-1]}, 97.5%: {volume.quantile(0.975)}")
+    logger.info(f"Volume breakout - Current: {volume.iloc[-1]:.0f}, MA: {volume_ma.iloc[-1]:.0f}, 97.5%: {volume.quantile(0.975):.0f}")
 
     return (volume.iloc[-1] > volume_ma.iloc[-1]) & (volume.iloc[-1] >= volume.quantile(0.975))
 
@@ -94,7 +94,7 @@ def breakout(df, ax, **kwargs):
 
     atr = ta.ATR(df['High'], df['Low'], df['Close'], timeperiod=14)
 
-    signal = high > (cum_high.shift(1) + (breakout_n_atr * atr))
+    signal = df['Close'] > (cum_high.shift(1) + (breakout_n_atr * atr))
 
     if ax: 
         high.plot(ax=ax, color='black', label='High Price')
@@ -103,12 +103,12 @@ def breakout(df, ax, **kwargs):
         for date in high.loc[high > (cum_high.shift(1) + atr)].index:
             ax.axvline(date, c='grey', alpha=0.3)
 
-        ax.set_title(f"Breakout - ATRs away from high {((high - cum_high.shift(1)) / atr).iloc[-1]:.2f}")
+        ax.set_title(f"Breakout - ATRs away from high {((df['Close'] - cum_high.shift(1)) / atr).iloc[-1]:.2f}")
         ax.set_xlabel("Time")
         ax.set_ylabel("Price")
         ax.legend()
     
-    logger.info(f"Breakout - ATRs away from high: {((high - cum_high.shift(1)) / atr).iloc[-1]:.2f}")
+    logger.info(f"Breakout - ATRs away from high: {((df['Close'] - cum_high.shift(1)) / atr).iloc[-1]:.2f}")
 
     return signal.iloc[-1]
 
