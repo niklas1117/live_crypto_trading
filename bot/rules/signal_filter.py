@@ -1,5 +1,6 @@
 import statsmodels.api as sm
 import talib as ta
+from loguru import logger
 
 # return based direction
 def trend_regression_entry(df, ax, **kwargs):
@@ -22,6 +23,8 @@ def trend_regression_entry(df, ax, **kwargs):
         ax.set_xlabel("Time")
         ax.set_ylabel("Price")
         ax.legend()
+
+    logger.info(f"Trend regression entry t-value: {t:.3f}")
 
     return t > 1.96
 
@@ -47,6 +50,8 @@ def volume_trend_regression_entry(df, ax, **kwargs):
         ax.set_ylabel("Volume")
         ax.legend()
 
+    logger.info(f"Volume trend regression entry t-value: {t:.3f}")
+
     return t > 1.96
 
 
@@ -69,6 +74,8 @@ def volume_breakout(df, ax, **kwargs):
         ax.set_xlabel("Time")
         ax.set_ylabel("Volume")
         ax.legend()
+
+    logger.info(f"Volume breakout - Current: {volume.iloc[-1]}, MA: {volume_ma.iloc[-1]}, 97.5%: {volume.quantile(0.975)}")
 
     return (volume.iloc[-1] > volume_ma.iloc[-1]) & (volume.iloc[-1] >= volume.quantile(0.975))
 
@@ -100,6 +107,8 @@ def breakout(df, ax, **kwargs):
         ax.set_xlabel("Time")
         ax.set_ylabel("Price")
         ax.legend()
+    
+    logger.info(f"Breakout - ATRs away from high: {((high - cum_high.shift(1)) / atr).iloc[-1]:.2f}")
 
     return signal.iloc[-1]
 
@@ -122,5 +131,7 @@ def recent_atr_compression(df, ax, **kwargs):
         ax.set_ylabel("ATR")
         ax.set_ylim(0, 1)
         ax.legend()
+
+    logger.info(f"Recent ATR compression - Current ATR rank: {atr_compression.iloc[-1]:.3f}")
 
     return atr_compression.iloc[-1] < atr_compression_cutoff
