@@ -80,18 +80,19 @@ def breakout(df, ax, **kwargs):
     """
 
     breakout_bars = kwargs.get("breakout_bars")
+    breakout_n_atr = kwargs.get("breakout_n_atr")
 
     high = df['High']
     cum_high = high.rolling(breakout_bars).max()
 
     atr = ta.ATR(df['High'], df['Low'], df['Close'], timeperiod=14)
 
-    signal = high > (cum_high.shift(1) + atr)
+    signal = high > (cum_high.shift(1) + (breakout_n_atr * atr))
 
     if ax: 
         high.plot(ax=ax, color='black', label='High Price')
         cum_high.shift(1).plot(ax=ax, color='grey', label='Previous High')
-        (cum_high.shift(1) + atr).plot(ax=ax, color='blue', label='Previous High + ATR')
+        (cum_high.shift(1) + (breakout_n_atr * atr)).plot(ax=ax, color='blue', label='Previous High + ATR')
         for date in high.loc[high > (cum_high.shift(1) + atr)].index:
             ax.axvline(date, c='grey', alpha=0.3)
 
