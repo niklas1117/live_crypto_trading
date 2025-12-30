@@ -147,8 +147,6 @@ def evaluate_entry_filters_and_execute_one_trade(
                 logger.info(f"To close we need to sell {quantity_close}.")
 
                 cummmax = buy_price
-                last_price = buy_price
-                price_stable_days = 0
 
                 cummaxs = []
                 trailing_losses = []
@@ -159,7 +157,7 @@ def evaluate_entry_filters_and_execute_one_trade(
                     try: 
                         price = float(client.get_symbol_ticker(symbol=ticker)['price'])
 
-                        last_bar_close = load_ohlcv(ticker, kwargs.get('exit_filter_timeframe'), "15 days ago UTC")['Close'].iloc[-1]
+                        last_bar_close = load_ohlcv(ticker, kwargs.get('exit_filter_timeframe'), "1 day ago UTC")['Close'].iloc[-1]
                         cummmax = max(cummmax, last_bar_close)
                         trailing_loss = cummmax - (last_atr * kwargs.get('min_loss_atr'))
                         potential_profit = (price * quantity_close) - total_outlay
@@ -167,20 +165,14 @@ def evaluate_entry_filters_and_execute_one_trade(
                         cummaxs.append(cummmax), trailing_losses.append(trailing_loss), prices.append(price), potential_profits.append(potential_profit)
                         logger.info(f"Current price: {price}, Trailing loss: {trailing_loss}, Potential profit: {potential_profit}")
 
-                        if price < trailing_loss:
+                        if last_bar_close < trailing_loss:
                             logger.info("Trailing loss hit, selling.")
                             break
-
-                        if price_stable_days > 10 and potential_profit > 0:
-                            logger.info(f"Price has been stable, potential profit reached: {potential_profit}")
-                            break
-
-                        price_stable_days += 1 if price == last_price else 0
-                        last_price = price
 
                     except Exception as e:
                         logger.error(f"Error during monitoring price for {ticker}: {e}, closing position.")
                         break
+                    time.sleep(60)
 
                 order = client.create_margin_order(
                     symbol=ticker,
