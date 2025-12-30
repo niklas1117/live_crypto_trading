@@ -11,8 +11,8 @@ def vec(df, volume_quantile_bars, volume_quantile):
 
     return signal, score
 
-def event(df, volume_quantile_bars):
-    signal, score = vec(df, volume_quantile_bars)
+def event(df, volume_quantile_bars, volume_quantile):
+    signal, score = vec(df, volume_quantile_bars, volume_quantile)
     result = signal.iloc[-1]
     logger.info(f"{'✅' if result else '❌'} - Volume breakout - {score.iloc[-1]:.2f}")
     return result

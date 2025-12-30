@@ -46,7 +46,7 @@ def evaluate_signal_filters_once(
 
             # Signal Filters
 
-            df_direction = load_ohlcv(ticker, kwargs.get('signal_filter_timeframe'), "5 days ago UTC")
+            df_direction = load_ohlcv(ticker, kwargs.get('signal_filter_timeframe'), "6 days ago UTC")
             results = [f.event(df_direction, **{k:kwargs[k] for k in f.REQUIRES}) for f in return_based_direction_filters]
 
             if all(results):
