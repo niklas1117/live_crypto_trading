@@ -1,0 +1,177 @@
+00:35:58 | INFO | Running live signal filters once before scheduling...
+00:35:58 | INFO | Running live signal filters...
+00:35:58 | INFO | ----- BNBUSDT - Signals -----
+00:35:58 | INFO | initial filters
+00:35:58 | INFO | ✅ - Return: -1.40%
+00:35:58 | INFO | ❌ - Volume: 0.12M
+00:35:58 | INFO | ❌
+00:35:58 | INFO | ----- BTCUSDT - Signals -----
+00:35:58 | INFO | initial filters
+00:35:58 | INFO | ✅ - Return: -1.07%
+00:35:58 | INFO | ❌ - Volume: 0.02M
+00:35:58 | INFO | ❌
+00:35:58 | INFO | ----- ETHUSDT - Signals -----
+00:35:58 | INFO | initial filters
+00:35:59 | INFO | ✅ - Return: -1.13%
+00:35:59 | INFO | ❌ - Volume: 0.48M
+00:35:59 | INFO | ❌
+00:35:59 | INFO | ----- TRXUSDT - Signals -----
+00:35:59 | INFO | initial filters
+00:35:59 | INFO | ✅ - Return: 0.10%
+00:35:59 | INFO | ✅ - Volume: 197.74M
+00:35:59 | INFO | ✅
+00:35:59 | INFO | signal filters
+00:35:59 | INFO | ❌ - Breakout - 1.00 ATRs
+00:36:32 | INFO | Running live signal filters once before scheduling...
+00:36:32 | INFO | Running live signal filters...
+00:36:32 | INFO | ----- BNBUSDT - Signals -----
+00:36:32 | INFO | initial filters
+00:36:32 | INFO | ✅ - Return: -1.50%
+00:36:32 | INFO | ❌ - Volume: 0.12M
+00:36:32 | INFO | ❌
+00:36:32 | INFO | ----- BTCUSDT - Signals -----
+00:36:32 | INFO | initial filters
+00:36:32 | INFO | ✅ - Return: -1.27%
+00:36:32 | INFO | ❌ - Volume: 0.02M
+00:36:32 | INFO | ❌
+00:36:32 | INFO | ----- ETHUSDT - Signals -----
+00:36:32 | INFO | initial filters
+00:36:32 | INFO | ✅ - Return: -1.36%
+00:36:32 | INFO | ❌ - Volume: 0.48M
+00:36:32 | INFO | ❌
+00:36:32 | INFO | ----- TRXUSDT - Signals -----
+00:36:32 | INFO | initial filters
+00:36:33 | INFO | ✅ - Return: 0.04%
+00:36:33 | INFO | ✅ - Volume: 197.37M
+00:36:33 | INFO | ✅
+00:36:33 | INFO | signal filters
+00:36:33 | INFO | ❌ - Breakout - 1.00 ATRs
+00:36:33 | INFO | ❌ - Volume breakout - 0.46
+00:36:33 | INFO | ❌ - ATR rank: 0.785
+00:36:33 | INFO | ❌
+00:36:33 | INFO | ----- XRPUSDT - Signals -----
+00:36:33 | INFO | initial filters
+00:36:33 | INFO | ✅ - Return: -1.47%
+00:36:33 | INFO | ✅ - Volume: 69.75M
+00:36:33 | INFO | ✅
+00:36:33 | INFO | signal filters
+00:36:34 | INFO | ❌ - Breakout - 0.96 ATRs
+00:36:34 | INFO | ❌ - Volume breakout - 0.14
+00:36:34 | INFO | ❌ - ATR rank: 0.694
+00:36:34 | INFO | ❌
+00:36:34 | INFO | ----- LINKUSDT - Signals -----
+00:36:34 | INFO | initial filters
+00:36:34 | INFO | ✅ - Return: -2.54%
+00:36:34 | INFO | ✅ - Volume: 2.89M
+00:36:34 | INFO | ✅
+00:36:34 | INFO | signal filters
+00:36:35 | INFO | ❌ - Breakout - 0.94 ATRs
+00:36:35 | INFO | ❌ - Volume breakout - 0.14
+00:36:35 | INFO | ❌ - ATR rank: 0.694
+00:36:35 | INFO | ❌
+00:36:35 | INFO | ----- ONTUSDT - Signals -----
+00:36:35 | INFO | initial filters
+00:36:35 | INFO | ✅ - Return: 22.52%
+00:36:35 | INFO | ✅ - Volume: 201.45M
+00:36:35 | INFO | ✅
+00:36:35 | INFO | signal filters
+00:36:35 | INFO | ❌ - Breakout - 0.77 ATRs
+00:36:35 | INFO | ❌ - Volume breakout - 0.23
+00:36:35 | INFO | ❌ - ATR rank: 0.549
+00:36:35 | INFO | ❌
+00:36:35 | INFO | ----- ADAUSDT - Signals -----
+00:36:35 | INFO | initial filters
+00:36:36 | INFO | ❌ - Return: -5.28%
+00:36:36 | INFO | ✅ - Volume: 144.24M
+00:36:36 | INFO | ❌
+00:36:36 | INFO | ----- ETCUSDT - Signals -----
+00:36:36 | INFO | initial filters
+00:36:36 | INFO | ✅ - Return: -3.33%
+00:36:36 | INFO | ❌ - Volume: 0.34M
+00:36:36 | INFO | ❌
+00:36:36 | INFO | ----- LTCUSDT - Signals -----
+00:36:36 | INFO | initial filters
+00:36:37 | INFO | ✅ - Return: -1.63%
+00:36:37 | INFO | ❌ - Volume: 0.31M
+00:36:37 | INFO | ❌
+00:36:37 | INFO | ----- XLMUSDT - Signals -----
+00:36:37 | INFO | initial filters
+00:36:38 | INFO | ✅ - Return: -3.62%
+00:36:38 | INFO | ✅ - Volume: 29.56M
+00:36:38 | INFO | ✅
+00:36:38 | INFO | signal filters
+00:36:38 | INFO | ❌ - Breakout - 0.94 ATRs
+00:36:38 | INFO | ❌ - Volume breakout - 0.34
+00:36:38 | INFO | ❌ - ATR rank: 0.681
+00:36:38 | INFO | ❌
+00:36:38 | INFO | ----- USDCUSDT - Signals -----
+00:36:38 | INFO | initial filters
+00:36:39 | INFO | ✅ - Return: 0.03%
+00:36:39 | INFO | ✅ - Volume: 2222.74M
+00:36:39 | INFO | ✅
+00:36:39 | INFO | signal filters
+00:36:39 | INFO | ❌ - Breakout - 1.00 ATRs
+00:36:39 | INFO | ❌ - Volume breakout - 0.04
+00:36:39 | INFO | ❌ - ATR rank: 0.931
+00:36:39 | INFO | ❌
+00:36:39 | INFO | ----- NEOUSDT - Signals -----
+00:36:39 | INFO | initial filters
+00:36:39 | INFO | ✅ - Return: -0.19%
+00:36:39 | INFO | ❌ - Volume: 0.83M
+00:36:39 | INFO | ❌
+00:36:39 | INFO | ----- ATOMUSDT - Signals -----
+00:36:39 | INFO | initial filters
+00:36:40 | INFO | ❌ - Return: -6.41%
+00:36:40 | INFO | ✅ - Volume: 1.92M
+00:36:40 | INFO | ❌
+00:36:40 | INFO | ----- DASHUSDT - Signals -----
+00:36:40 | INFO | initial filters
+00:36:40 | INFO | ✅ - Return: -4.96%
+00:36:40 | INFO | ❌ - Volume: 0.32M
+00:36:40 | INFO | ❌
+00:36:40 | INFO | ----- ZECUSDT - Signals -----
+00:36:40 | INFO | initial filters
+00:36:40 | INFO | ✅ - Return: 0.53%
+00:36:40 | INFO | ❌ - Volume: 0.49M
+00:36:40 | INFO | ❌
+00:36:40 | INFO | ----- BATUSDT - Signals -----
+00:36:40 | INFO | initial filters
+00:36:40 | INFO | ❌ - Return: -6.11%
+00:36:40 | INFO | ✅ - Volume: 12.55M
+00:36:40 | INFO | ❌
+00:36:40 | INFO | ----- IOSTUSDT - Signals -----
+00:36:40 | INFO | initial filters
+00:36:41 | INFO | ✅ - Return: -0.12%
+00:36:41 | INFO | ✅ - Volume: 525.84M
+00:36:41 | INFO | ✅
+00:36:41 | INFO | signal filters
+00:36:42 | INFO | ❌ - Breakout - 0.93 ATRs
+00:36:42 | INFO | ❌ - Volume breakout - 0.68
+00:36:42 | INFO | ❌ - ATR rank: 0.618
+00:36:42 | INFO | ❌
+00:36:42 | INFO | ----- VETUSDT - Signals -----
+00:36:42 | INFO | initial filters
+00:36:42 | INFO | ✅ - Return: -3.91%
+00:36:42 | INFO | ✅ - Volume: 188.12M
+00:36:42 | INFO | ✅
+00:36:42 | INFO | signal filters
+00:36:42 | INFO | ❌ - Breakout - 0.93 ATRs
+00:36:42 | INFO | ❌ - Volume breakout - 0.48
+00:36:42 | INFO | ❌ - ATR rank: 0.778
+00:36:42 | INFO | ❌
+00:36:42 | INFO | ----- QTUMUSDT - Signals -----
+00:36:42 | INFO | initial filters
+00:36:43 | INFO | ✅ - Return: -0.23%
+00:36:43 | INFO | ✅ - Volume: 1.56M
+00:36:43 | INFO | ✅
+00:36:43 | INFO | signal filters
+00:36:43 | INFO | ❌ - Breakout - 0.92 ATRs
+00:36:43 | INFO | ❌ - Volume breakout - 0.26
+00:36:43 | INFO | ❌ - ATR rank: 0.417
+00:36:43 | INFO | ❌
+00:36:43 | INFO | ----- IOTAUSDT - Signals -----
+00:36:43 | INFO | initial filters
+00:36:43 | INFO | ✅ - Return: -3.93%
+00:36:43 | INFO | ✅ - Volume: 10.32M
+00:36:43 | INFO | ✅
+00:36:43 | INFO | signal filters

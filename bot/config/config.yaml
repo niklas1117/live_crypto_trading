@@ -7,9 +7,12 @@ min_volume: 1000000
 
 breakout_bars: 144
 breakout_n_atr: 0.5
-volume_ma_bars: 144
+
+volume_quantile_bars: 144
+volume_quantile: 0.5
+
 atr_compression_rank_bars: 144
-atr_compression_cutoff: 0.333
+atr_compression_cutoff: 0.5
 
 donchian_entry_bars: 12
 

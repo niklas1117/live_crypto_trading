@@ -37,7 +37,7 @@ def evaluate_signal_filters_once(
 
         initial_filter_timeframe = kwargs.get('initial_filter_timeframe')
         info = get_ticker_info(ticker, initial_filter_timeframe)
-        results = [f(info, None, **kwargs) for a, f in enumerate(info_based_filters)]
+        results = [f.event(info, **{k:kwargs[k] for k in f.REQUIRES}) for f in info_based_filters]
 
         if all(results):
 
@@ -47,7 +47,7 @@ def evaluate_signal_filters_once(
             # Signal Filters
 
             df_direction = load_ohlcv(ticker, kwargs.get('signal_filter_timeframe'), "5 days ago UTC")
-            results = [f(df_direction, None, **kwargs) for a, f in enumerate(return_based_direction_filters)]
+            results = [f.event(df_direction, **{k:kwargs[k] for k in f.REQUIRES}) for f in return_based_direction_filters]
 
             if all(results):
                 logger.info("✅")
@@ -60,8 +60,8 @@ def evaluate_signal_filters_once(
 
 def run_live_signal_filters(
     tickers: list[str], 
-    info_based_filters: list,
-    return_based_direction_filters: list,
+    initial_filters: list,
+    signal_filters: list,
     schedule_minutes: list[int],
     rerun_once_first: bool=False # run once and then schedule
 ):
@@ -71,8 +71,8 @@ def run_live_signal_filters(
         logger.info("Running live signal filters...")
         passing_tickers = evaluate_signal_filters_once(
             tickers, 
-            info_based_filters, 
-            return_based_direction_filters,
+            initial_filters, 
+            signal_filters,
             **read_config()
         )
         write_tickers(passing_tickers, filename='live_signal_tickers.txt')
