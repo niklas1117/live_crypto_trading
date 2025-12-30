@@ -107,16 +107,18 @@ def evaluate_entry_filters_and_execute_one_trade(
 
         price = float(client.get_symbol_ticker(symbol=ticker)['price'])
         df_entry = load_ohlcv(ticker, kwargs.get('execution_filter_timeframe'), "2 hours ago UTC")
-        results = [f(df_entry, price, None, **kwargs) for a, f in enumerate(return_based_entry_filters)]
+        results = [f.event(df_entry, **{k:kwargs[k] for k in f.REQUIRES}) for f in return_based_entry_filters]
 
         if all(results):
+
+            df_exit = load_ohlcv(ticker, kwargs.get('exit_filter_timeframe'), "1 day ago UTC")
 
             logger.info("✅")
             logger.info("executing trade")
 
             try: 
 
-                last_atr = ta.ATR(df_entry['High'], df_entry['Low'], df_entry['Close'], timeperiod=kwargs.get('atr_bars')).iloc[-1]
+                last_atr = ta.ATR(df_exit['High'], df_exit['Low'], df_exit['Close'], timeperiod=14).iloc[-1]
                 cash = get_usdt_balance()
                 quantity = cash / price
                 quantity = math.floor(quantity * kwargs.get('max_leverage'))
@@ -157,7 +159,8 @@ def evaluate_entry_filters_and_execute_one_trade(
                     try: 
                         price = float(client.get_symbol_ticker(symbol=ticker)['price'])
 
-                        cummmax = max(cummmax, price)
+                        last_bar_close = load_ohlcv(ticker, kwargs.get('exit_filter_timeframe'), "15 days ago UTC")['Close'].iloc[-1]
+                        cummmax = max(cummmax, last_bar_close)
                         trailing_loss = cummmax - (last_atr * kwargs.get('min_loss_atr'))
                         potential_profit = (price * quantity_close) - total_outlay
 

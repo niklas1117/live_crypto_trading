@@ -437,3 +437,115 @@
 01:36:32 | INFO | ✅ - Volume: 97.10M
 01:36:32 | INFO | ✅
 01:36:32 | INFO | signal filters
+20:18:00 | INFO | Running live entry filters...
+20:18:00 | INFO | Evaluating entry filters and executing trades...
+20:18:00 | INFO | Tickers to evaluate: ['BTCUSDT']
+20:18:00 | INFO | ----- BTCUSDT - Entry -----
+20:18:00 | INFO | entry filters
+20:18:34 | INFO | Running live entry filters...
+20:18:34 | INFO | Evaluating entry filters and executing trades...
+20:18:34 | INFO | Tickers to evaluate: ['BTCUSDT']
+20:18:34 | INFO | ----- BTCUSDT - Entry -----
+20:18:34 | INFO | entry filters
+20:18:46 | INFO | Running live entry filters...
+20:18:46 | INFO | Evaluating entry filters and executing trades...
+20:18:46 | INFO | Tickers to evaluate: ['BTCUSDT']
+20:18:46 | INFO | ----- BTCUSDT - Entry -----
+20:18:46 | INFO | entry filters
+20:18:47 | INFO | ❌ - Donchian Upper Entry: 1.00
+20:18:47 | INFO | ❌
+20:18:47 | INFO | Evaluating entry filters and executing trades...
+20:18:47 | INFO | Tickers to evaluate: ['BTCUSDT']
+20:18:47 | INFO | ----- BTCUSDT - Entry -----
+20:18:47 | INFO | entry filters
+20:18:48 | INFO | ❌ - Donchian Upper Entry: 1.00
+20:18:48 | INFO | ❌
+20:18:48 | INFO | Evaluating entry filters and executing trades...
+20:18:48 | INFO | Tickers to evaluate: ['BTCUSDT']
+20:18:48 | INFO | ----- BTCUSDT - Entry -----
+20:18:48 | INFO | entry filters
+20:18:49 | INFO | ❌ - Donchian Upper Entry: 1.00
+20:18:49 | INFO | ❌
+20:18:49 | INFO | Evaluating entry filters and executing trades...
+20:18:49 | INFO | Tickers to evaluate: ['BTCUSDT']
+20:18:49 | INFO | ----- BTCUSDT - Entry -----
+20:18:49 | INFO | entry filters
+20:18:50 | INFO | ❌ - Donchian Upper Entry: 1.00
+20:18:50 | INFO | ❌
+20:18:50 | INFO | Evaluating entry filters and executing trades...
+20:18:50 | INFO | Tickers to evaluate: ['BTCUSDT']
+20:18:50 | INFO | ----- BTCUSDT - Entry -----
+20:18:50 | INFO | entry filters
+20:18:50 | INFO | ❌ - Donchian Upper Entry: 1.00
+20:18:50 | INFO | ❌
+20:18:50 | INFO | Evaluating entry filters and executing trades...
+20:18:50 | INFO | Tickers to evaluate: ['BTCUSDT']
+20:18:50 | INFO | ----- BTCUSDT - Entry -----
+20:18:50 | INFO | entry filters
+20:18:52 | INFO | ❌ - Donchian Upper Entry: 1.00
+20:18:52 | INFO | ❌
+20:18:52 | INFO | Evaluating entry filters and executing trades...
+20:18:52 | INFO | Tickers to evaluate: ['BTCUSDT']
+20:18:52 | INFO | ----- BTCUSDT - Entry -----
+20:18:52 | INFO | entry filters
+20:18:52 | INFO | ❌ - Donchian Upper Entry: 1.00
+20:18:52 | INFO | ❌
+20:18:52 | INFO | Evaluating entry filters and executing trades...
+20:18:52 | INFO | Tickers to evaluate: ['BTCUSDT']
+20:18:52 | INFO | ----- BTCUSDT - Entry -----
+20:18:52 | INFO | entry filters
+20:19:44 | INFO | Running live entry filters...
+20:19:44 | INFO | Evaluating entry filters and executing trades...
+20:19:44 | INFO | Tickers to evaluate: ['BTCUSDT']
+20:19:44 | INFO | ----- BTCUSDT - Entry -----
+20:19:44 | INFO | entry filters
+20:27:53 | INFO | Running live signal filters once before scheduling...
+20:27:53 | INFO | Running live signal filters...
+20:27:53 | INFO | ----- BNBUSDT - Signals -----
+20:27:53 | INFO | initial filters
+20:27:53 | INFO | ✅ - Return: 0.72%
+20:27:53 | INFO | ❌ - Volume: 0.07M
+20:27:53 | INFO | ❌
+20:27:53 | INFO | ----- BTCUSDT - Signals -----
+20:27:53 | INFO | initial filters
+20:27:53 | INFO | ✅ - Return: 0.85%
+20:27:53 | INFO | ❌ - Volume: 0.01M
+20:27:53 | INFO | ❌
+20:27:53 | INFO | ----- ETHUSDT - Signals -----
+20:27:53 | INFO | initial filters
+20:27:54 | INFO | ✅ - Return: 1.23%
+20:27:54 | INFO | ❌ - Volume: 0.28M
+20:27:54 | INFO | ❌
+20:27:54 | INFO | ----- TRXUSDT - Signals -----
+20:27:54 | INFO | initial filters
+20:27:54 | INFO | ✅ - Return: 0.92%
+20:27:54 | INFO | ✅ - Volume: 125.61M
+20:27:54 | INFO | ✅
+20:27:54 | INFO | signal filters
+20:27:55 | INFO | ❌ - Breakout - 1.00 ATRs
+20:27:55 | INFO | ❌ - Volume breakout - 0.20
+20:27:55 | INFO | ❌
+20:27:55 | INFO | ----- XRPUSDT - Signals -----
+20:27:55 | INFO | initial filters
+20:27:55 | INFO | ✅ - Return: 1.16%
+20:27:55 | INFO | ✅ - Volume: 47.59M
+20:27:55 | INFO | ✅
+20:27:55 | INFO | signal filters
+20:27:55 | INFO | ❌ - Breakout - 0.98 ATRs
+20:27:55 | INFO | ❌ - Volume breakout - 0.09
+20:27:55 | INFO | ❌
+20:27:55 | INFO | ----- LINKUSDT - Signals -----
+20:27:55 | INFO | initial filters
+20:27:56 | INFO | ✅ - Return: 0.90%
+20:27:56 | INFO | ✅ - Volume: 1.61M
+20:27:56 | INFO | ✅
+20:27:56 | INFO | signal filters
+20:27:56 | INFO | ❌ - Breakout - 0.95 ATRs
+20:27:56 | INFO | ❌ - Volume breakout - 0.05
+20:27:56 | INFO | ❌
+20:27:56 | INFO | ----- ONTUSDT - Signals -----
+20:27:56 | INFO | initial filters
+20:27:56 | INFO | ✅ - Return: -4.76%
+20:27:56 | INFO | ✅ - Volume: 72.41M
+20:27:56 | INFO | ✅
+20:27:56 | INFO | signal filters
