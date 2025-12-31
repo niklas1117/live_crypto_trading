@@ -228,6 +228,8 @@ def run_live_entry_filters_and_execute_trades(
                 **read_config()
             )
 
+        time.sleep(60)
+
 def evaluate_exit_filters_and_execute_exits(
     exit_filters: list,
     **kwargs):
