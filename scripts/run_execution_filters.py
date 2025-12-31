@@ -9,5 +9,4 @@ from bot.rules.execution_filter import upper_donchian_breach
 
 run_live_entry_filters_and_execute_trades(
     return_based_entry_filters=[upper_donchian_breach],
-    exit_filters=[],
 )

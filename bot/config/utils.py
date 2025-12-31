@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 import yaml
 
@@ -33,3 +34,44 @@ def read_config(filename='config.yaml'):
         return {}
     with config_file.open('r', encoding='utf-8') as f:
         return yaml.safe_load(f)
+    
+def write_position(ticker: str, position: dict):
+    positions_file = BASE_DIR / "positions.json"
+    positions = {}
+    if positions_file.exists():
+        with positions_file.open('r', encoding='utf-8') as f:
+            positions = json.load(f)
+    positions[ticker] = position
+    with positions_file.open('w', encoding='utf-8') as f:
+        json.dump(positions, f, indent=2)
+
+def read_positions():
+    positions_file = BASE_DIR / "positions.json"
+    positions = {}
+    if positions_file.exists():
+        with positions_file.open('r', encoding='utf-8') as f:
+            positions = json.load(f)
+        return positions
+    return {}
+
+def read_position(ticker: str):
+    positions = read_positions()
+    return positions.get(ticker, None)
+
+def close_position(ticker: str):
+    positions_file = BASE_DIR / "positions.json"
+    positions = {}
+    if positions_file.exists():
+        with positions_file.open('r', encoding='utf-8') as f:
+            positions = json.load(f)
+    if ticker in positions:
+        del positions[ticker]
+        with positions_file.open('w', encoding='utf-8') as f:
+            json.dump(positions, f, indent=2)
+
+def update_position(ticker, updates: dict):
+    position = read_position(ticker)
+    if position is None:
+        position = {}
+    position.update(updates)
+    write_position(ticker, position)

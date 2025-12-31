@@ -14,5 +14,8 @@ volume_quantile: 1
 
 donchian_entry_bars: 12
 
-max_leverage: 0.5
+total_risk: 0.02
+max_risk_per_trade: 0.002
+entry_atr_stop_multiplier: 1
+max_leverage: 1
 min_loss_atr: 3
