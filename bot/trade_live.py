@@ -103,7 +103,7 @@ def evaluate_entry_filters_and_execute_trades(
 
     for ticker in tickers:
 
-        if get_position(ticker.split('USDT')[0]) is not None:
+        if ticker in read_positions().keys():
             logger.info(f"Already have position in {ticker}, skipping.")
             continue
 
