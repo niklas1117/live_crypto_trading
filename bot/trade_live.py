@@ -192,7 +192,7 @@ def evaluate_entry_filters_and_execute_trades(
                 qty_dec = Decimal(str(quantity_close))
                 quantity_close = float((qty_dec // step) * step)
 
-                trailing_loss = buy_price - (last_atr * float(kwargs['min_loss_atr']))
+                trailing_loss = buy_price - (last_atr * float(kwargs['entry_atr_stop_multiplier']))
 
                 # Write new position to positions.json
 

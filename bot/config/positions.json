@@ -1,1 +1,26 @@
-{}
+{
+  "FUNUSDT": {
+    "quantity": 5676.0,
+    "buy_price": 0.001955,
+    "total_outlay": 11.108310000000001,
+    "trailing_loss": 0.0018555562870818565,
+    "atr_at_entry": 3.314790430604786e-05,
+    "timestamp": 1767281598.1623907
+  },
+  "SHIBUSDT": {
+    "quantity": 1730273.0,
+    "buy_price": 8.29e-06,
+    "total_outlay": 14.35832145,
+    "trailing_loss": 7.955893441801752e-06,
+    "atr_at_entry": 1.1136885273274933e-07,
+    "timestamp": 1767373379.407299
+  },
+  "XRPUSDT": {
+    "quantity": 14.3,
+    "buy_price": 1.9798,
+    "total_outlay": 28.31114,
+    "trailing_loss": 1.9539009030827041,
+    "atr_at_entry": 0.013433032305765256,
+    "timestamp": 1767373504.077369
+  }
+}
